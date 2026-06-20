@@ -52,7 +52,7 @@ This is not just a converter — it's a full AI study assistant, built end-to-en
 ## 🗺️ Roadmap
 
 - [x] Project setup & repo structure
-- [ ] Authentication (sign up / login)
+- [x] Authentication (sign up / login)
 - [ ] Upload notes (image / PDF)
 - [ ] OCR text extraction pipeline
 - [ ] AI flashcard generation (Q&A, fill-blank, MCQ)
