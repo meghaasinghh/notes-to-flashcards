@@ -3,6 +3,7 @@
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -16,8 +17,8 @@ export default function DashboardPage() {
 
   if (status === "loading") {
     return (
-      <div className="flex flex-1 items-center justify-center">
-        <p className="text-zinc-500 dark:text-zinc-400">Loading...</p>
+      <div className="flex flex-1 items-center justify-center bg-paper">
+        <p className="font-handwritten text-2xl text-ink">Loading...</p>
       </div>
     );
   }
@@ -27,23 +28,34 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 dark:bg-black px-4">
-      <div className="w-full max-w-md text-center">
-        <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
-          Welcome, {session.user?.name}
-        </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-6">
-          {session.user?.email}
-        </p>
-        <p className="text-zinc-600 dark:text-zinc-400 mb-8">
-          Your dashboard is coming soon — this is just a placeholder confirming you&apos;re logged in.
-        </p>
+    <div className="flex-1 bg-paper">
+      <nav className="flex items-center justify-between px-8 sm:px-12 py-6 max-w-6xl mx-auto">
+        <Link href="/" className="font-handwritten text-2xl font-bold text-ink">
+          notes2flashcards
+        </Link>
         <button
           onClick={() => signOut({ callbackUrl: "/login" })}
-          className="rounded-lg border border-zinc-300 dark:border-zinc-700 px-5 py-2.5 text-sm font-medium text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+          className="text-sm font-semibold text-ink border-2 border-ink rounded-lg px-4 py-2 hover:bg-ink hover:text-paper transition-colors"
         >
           Log out
         </button>
+      </nav>
+
+      <div className="max-w-6xl mx-auto px-8 sm:px-12 py-12">
+        <span className="inline-block bg-highlight text-ink text-xs font-semibold px-3 py-1 rounded-full -rotate-2 mb-3">
+          ✦ Welcome back
+        </span>
+        <h1 className="text-3xl sm:text-4xl font-bold text-ink mb-2">
+          Hey, <span className="font-handwritten text-coral text-4xl sm:text-5xl">{session.user?.name}</span>
+        </h1>
+        <p className="text-ink/60 mb-10">{session.user?.email}</p>
+
+        <div className="bg-white border-2 border-ink rounded-2xl shadow-hard-line p-8 max-w-md">
+          <p className="text-ink/70 leading-relaxed">
+            Your dashboard is coming soon — upload your first set of notes to
+            get started, once that feature lands.
+          </p>
+        </div>
       </div>
     </div>
   );
