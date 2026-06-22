@@ -55,7 +55,7 @@ This is not just a converter — it's a full AI study assistant, built end-to-en
 - [x] Authentication (sign up / login)
 - [x] Upload notes (image / PDF)
 - [x] OCR text extraction pipeline
-- [ ] AI flashcard generation (Q&A, fill-blank, MCQ)
+- [x] AI flashcard generation (Q&A, fill-blank, MCQ)
 - [ ] SM-2 spaced repetition engine
 - [ ] Review / study mode UI
 - [ ] Analytics dashboard
