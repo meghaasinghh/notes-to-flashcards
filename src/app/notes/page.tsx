@@ -21,6 +21,7 @@ export default function NotesPage() {
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(true);
   const [runningOcrId, setRunningOcrId] = useState<string | null>(null);
+  const [generatingId, setGeneratingId] = useState<string | null>(null);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -49,6 +50,20 @@ export default function NotesPage() {
       await fetchNotes();
     } finally {
       setRunningOcrId(null);
+    }
+  }
+  async function generateFlashcards(noteId: string) {
+    setGeneratingId(noteId);
+    try {
+      const res = await fetch(`/api/notes/${noteId}/generate-flashcards`, { method: "POST" });
+      const data = await res.json();
+      if (res.ok) {
+        router.push(`/notes/${noteId}/flashcards`);
+      } else {
+        alert(data.error || "Failed to generate flashcards");
+      }
+    } finally {
+      setGeneratingId(null);
     }
   }
 
@@ -122,6 +137,15 @@ export default function NotesPage() {
                     className="text-sm font-bold bg-coral text-paper px-4 py-2 rounded-lg shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all disabled:opacity-60"
                   >
                     {runningOcrId === note._id ? "Reading text..." : "Run OCR"}
+                  </button>
+                )}
+                {note.ocrStatus === "completed" && (
+                  <button
+                    onClick={() => generateFlashcards(note._id)}
+                    disabled={generatingId === note._id}
+                    className="text-sm font-bold bg-sage text-paper px-4 py-2 rounded-lg shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all disabled:opacity-60"
+                  >
+                    {generatingId === note._id ? "Generating cards..." : "Generate Flashcards"}
                   </button>
                 )}
               </div>
