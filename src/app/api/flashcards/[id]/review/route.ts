@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { connectToDatabase } from "@/lib/mongoose";
 import Flashcard from "@/models/Flashcard";
 import { calculateSM2 } from "@/lib/sm2";
+import ReviewLog from "@/models/ReviewLog";
 
 export async function POST(
   req: Request,
@@ -52,6 +53,12 @@ export async function POST(
     card.repetitions = result.repetitions;
     card.nextReviewDate = result.nextReviewDate;
     await card.save();
+
+    await ReviewLog.create({
+      userId: session.user.email,
+      flashcardId: id,
+      quality,
+    });
 
     return NextResponse.json({
       message: "Review recorded",
