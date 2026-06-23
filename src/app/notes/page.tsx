@@ -134,7 +134,7 @@ export default function NotesPage() {
                   <button
                     onClick={() => runOcr(note._id)}
                     disabled={runningOcrId === note._id}
-                    className="text-sm font-bold bg-coral text-paper px-4 py-2 rounded-lg shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all disabled:opacity-60"
+                    className="text-sm font-bold bg-coral text-paper px-4 py-2 rounded-lg shadow-hard hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all disabled:opacity-60"
                   >
                     {runningOcrId === note._id ? "Reading text..." : "Run OCR"}
                   </button>
@@ -143,7 +143,7 @@ export default function NotesPage() {
                   <button
                     onClick={() => generateFlashcards(note._id)}
                     disabled={generatingId === note._id}
-                    className="text-sm font-bold bg-sage text-paper px-4 py-2 rounded-lg shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all disabled:opacity-60"
+                    className="text-sm font-bold bg-sage text-paper px-4 py-2 rounded-lg shadow-hard hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all disabled:opacity-60"
                   >
                     {generatingId === note._id ? "Generating cards..." : "Generate Flashcards"}
                   </button>

@@ -93,7 +93,7 @@ export default function FlashcardsPage() {
           Card {currentIndex + 1} of {flashcards.length}
         </p>
 
-        <div className="bg-white border-2 border-ink rounded-2xl shadow-hard-coral p-8 min-h-[260px] flex flex-col">
+        <div className="bg-white border-2 border-ink rounded-2xl shadow-hard-coral p-8 min-h-65 flex flex-col">
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs font-bold uppercase tracking-wide text-sage">
               {card.type === "qa" ? "Question & Answer" : card.type === "fill-blank" ? "Fill in the blank" : "Multiple choice"}
@@ -138,7 +138,7 @@ export default function FlashcardsPage() {
           ) : (
             <button
               onClick={() => setRevealed(true)}
-              className="self-start text-sm font-bold bg-ink text-paper px-4 py-2 rounded-lg shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all"
+              className="self-start text-sm font-bold bg-ink text-paper px-4 py-2 rounded-lg shadow-hard hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
             >
               Reveal answer
             </button>

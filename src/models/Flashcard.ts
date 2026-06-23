@@ -9,6 +9,10 @@ export interface IFlashcard {
   options?: string[];
   difficulty: "easy" | "medium" | "hard";
   explanation?: string;
+  easinessFactor: number;
+  interval: number;
+  repetitions: number;
+  nextReviewDate: Date;
   createdAt: Date;
 }
 
@@ -47,12 +51,27 @@ const FlashcardSchema = new Schema<IFlashcard>({
     type: String,
     default: "",
   },
-  createdAt: {
+ createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  easinessFactor: {
+    type: Number,
+    default: 2.5,
+  },
+  interval: {
+    type: Number,
+    default: 0,
+  },
+  repetitions: {
+    type: Number,
+    default: 0,
+  },
+  nextReviewDate: {
     type: Date,
     default: Date.now,
   },
 });
-
 const Flashcard = models.Flashcard || model<IFlashcard>("Flashcard", FlashcardSchema);
 
 export default Flashcard;
