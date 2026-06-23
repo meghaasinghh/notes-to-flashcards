@@ -58,7 +58,7 @@ This is not just a converter — it's a full AI study assistant, built end-to-en
 - [x] AI flashcard generation (Q&A, fill-blank, MCQ)
 - [x] SM-2 spaced repetition engine
 - [x] Review / study mode UI
-- [ ] Analytics dashboard
+- [x] Analytics dashboard
 - [ ] AI tutor chat
 - [ ] Gamification (XP, streaks, goals)
 - [ ] Deck sharing & community features
