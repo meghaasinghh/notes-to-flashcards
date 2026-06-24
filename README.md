@@ -9,6 +9,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ---
+🔗 **[Live Demo] https://notes-to-flashcards-ten.vercel.app/
 
 ## 📖 Overview
 
@@ -63,7 +64,7 @@ This is not just a converter — it's a full AI study assistant, built end-to-en
 - [x] Gamification (XP, streaks, goals)
 - [x] Deck sharing & community features
 - [x] Export to PDF / Anki
-- [ ] Deployment
+- [x] Deployment
 
 > This roadmap is updated as features are completed — check commit history for progress.
 
