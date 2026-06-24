@@ -28,22 +28,16 @@ export default function PublicDeckPage() {
   const [upvoted, setUpvoted] = useState(false);
 
   useEffect(() => {
-    fetchDeck();
-  }, [noteId]);
-
-async function fetchDeck() {
-    setLoading(true);
-    const res = await fetch(`/api/public/notes/${noteId}/flashcards`);
-    const data = await res.json();
-    if (res.ok) {
-      setNoteInfo(data.note);
-      setCards(data.flashcards || []);
-    }
-    setLoading(false);
-  }
-
-  useEffect(() => {
-    fetchDeck();
+    (async () => {
+      setLoading(true);
+      const res = await fetch(`/api/public/notes/${noteId}/flashcards`);
+      const data = await res.json();
+      if (res.ok) {
+        setNoteInfo(data.note);
+        setCards(data.flashcards || []);
+      }
+      setLoading(false);
+    })();
   }, [noteId]);
 
   async function handleUpvote() {

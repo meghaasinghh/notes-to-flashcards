@@ -32,19 +32,16 @@ export default function StudyPage() {
       router.push("/login");
     }
   }, [status, router]);
+useEffect(() => {
+    if (status !== "authenticated") return;
 
-  async function fetchDueCards() {
-    setLoading(true);
-    const res = await fetch("/api/flashcards/due");
-    const data = await res.json();
-    setCards(data.flashcards || []);
-    setLoading(false);
-  }
-
-  useEffect(() => {
-    if (status === "authenticated") {
-      fetchDueCards();
-    }
+    (async () => {
+      setLoading(true);
+      const res = await fetch("/api/flashcards/due");
+      const data = await res.json();
+      setCards(data.flashcards || []);
+      setLoading(false);
+    })();
   }, [status]);
 
   async function rateCard(quality: number) {

@@ -32,18 +32,16 @@ export default function FlashcardsPage() {
     }
   }, [status, router]);
 
-  async function fetchFlashcards() {
-    setLoading(true);
-    const res = await fetch(`/api/notes/${noteId}/flashcards`);
-    const data = await res.json();
-    setFlashcards(data.flashcards || []);
-    setLoading(false);
-  }
+ useEffect(() => {
+    if (status !== "authenticated" || !noteId) return;
 
-  useEffect(() => {
-    if (status === "authenticated" && noteId) {
-      fetchFlashcards();
-    }
+    (async () => {
+      setLoading(true);
+      const res = await fetch(`/api/notes/${noteId}/flashcards`);
+      const data = await res.json();
+      setFlashcards(data.flashcards || []);
+      setLoading(false);
+    })();
   }, [status, noteId]);
 
   function nextCard() {

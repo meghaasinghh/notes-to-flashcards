@@ -26,18 +26,16 @@ export default function AnalyticsPage() {
     }
   }, [status, router]);
 
-  async function fetchAnalytics() {
-    setLoading(true);
-    const res = await fetch("/api/analytics");
-    const json = await res.json();
-    setData(json);
-    setLoading(false);
-  }
-
   useEffect(() => {
-    if (status === "authenticated") {
-      fetchAnalytics();
-    }
+    if (status !== "authenticated") return;
+
+    (async () => {
+      setLoading(true);
+      const res = await fetch("/api/analytics");
+      const json = await res.json();
+      setData(json);
+      setLoading(false);
+    })();
   }, [status]);
 
   if (status === "loading" || loading || !data) {
