@@ -135,7 +135,7 @@ export default function NotesPage() {
                   </p>
                 )}
 
-                {note.ocrStatus === "pending" && note.fileType === "image" && (
+                {note.ocrStatus === "pending" && (
                   <button
                     onClick={() => runOcr(note._id)}
                     disabled={runningOcrId === note._id}

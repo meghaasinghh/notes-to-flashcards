@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { connectToDatabase } from "@/lib/mongoose";
 import Note from "@/models/Note";
-import { extractTextFromImage } from "@/lib/ocr";
+import { extractTextFromImage, extractTextFromPdf } from "@/lib/ocr";
 
 export async function POST(
   req: Request,
@@ -31,17 +31,13 @@ export async function POST(
       return NextResponse.json({ error: "Not authorized" }, { status: 403 });
     }
 
-    if (note.fileType !== "image") {
-      return NextResponse.json(
-        { error: "OCR currently only supports images" },
-        { status: 400 }
-      );
-    }
-
-    note.ocrStatus = "processing";
+   note.ocrStatus = "processing";
     await note.save();
 
-    const extractedText = await extractTextFromImage(note.fileUrl);
+    const extractedText =
+      note.fileType === "pdf"
+        ? await extractTextFromPdf(note.fileUrl)
+        : await extractTextFromImage(note.fileUrl);
 
     note.extractedText = extractedText;
     note.ocrStatus = "completed";
