@@ -62,7 +62,7 @@ This is not just a converter — it's a full AI study assistant, built end-to-en
 - [x] AI tutor chat
 - [x] Gamification (XP, streaks, goals)
 - [x] Deck sharing & community features
-- [ ] Export to PDF / Anki
+- [x] Export to PDF / Anki
 - [ ] Deployment
 
 > This roadmap is updated as features are completed — check commit history for progress.
