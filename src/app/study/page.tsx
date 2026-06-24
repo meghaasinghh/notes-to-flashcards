@@ -33,12 +33,6 @@ export default function StudyPage() {
     }
   }, [status, router]);
 
-  useEffect(() => {
-    if (status === "authenticated") {
-      fetchDueCards();
-    }
-  }, [status]);
-
   async function fetchDueCards() {
     setLoading(true);
     const res = await fetch("/api/flashcards/due");
@@ -46,6 +40,12 @@ export default function StudyPage() {
     setCards(data.flashcards || []);
     setLoading(false);
   }
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      fetchDueCards();
+    }
+  }, [status]);
 
   async function rateCard(quality: number) {
     const card = cards[currentIndex];

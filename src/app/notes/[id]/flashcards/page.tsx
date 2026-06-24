@@ -32,12 +32,6 @@ export default function FlashcardsPage() {
     }
   }, [status, router]);
 
-  useEffect(() => {
-    if (status === "authenticated" && noteId) {
-      fetchFlashcards();
-    }
-  }, [status, noteId]);
-
   async function fetchFlashcards() {
     setLoading(true);
     const res = await fetch(`/api/notes/${noteId}/flashcards`);
@@ -45,6 +39,12 @@ export default function FlashcardsPage() {
     setFlashcards(data.flashcards || []);
     setLoading(false);
   }
+
+  useEffect(() => {
+    if (status === "authenticated" && noteId) {
+      fetchFlashcards();
+    }
+  }, [status, noteId]);
 
   function nextCard() {
     setRevealed(false);

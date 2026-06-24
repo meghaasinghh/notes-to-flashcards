@@ -26,12 +26,6 @@ export default function AnalyticsPage() {
     }
   }, [status, router]);
 
-  useEffect(() => {
-    if (status === "authenticated") {
-      fetchAnalytics();
-    }
-  }, [status]);
-
   async function fetchAnalytics() {
     setLoading(true);
     const res = await fetch("/api/analytics");
@@ -39,6 +33,12 @@ export default function AnalyticsPage() {
     setData(json);
     setLoading(false);
   }
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      fetchAnalytics();
+    }
+  }, [status]);
 
   if (status === "loading" || loading || !data) {
     return (

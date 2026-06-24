@@ -31,7 +31,7 @@ export default function PublicDeckPage() {
     fetchDeck();
   }, [noteId]);
 
-  async function fetchDeck() {
+async function fetchDeck() {
     setLoading(true);
     const res = await fetch(`/api/public/notes/${noteId}/flashcards`);
     const data = await res.json();
@@ -41,6 +41,10 @@ export default function PublicDeckPage() {
     }
     setLoading(false);
   }
+
+  useEffect(() => {
+    fetchDeck();
+  }, [noteId]);
 
   async function handleUpvote() {
     if (upvoted || status !== "authenticated") return;
