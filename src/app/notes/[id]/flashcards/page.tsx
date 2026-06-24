@@ -83,9 +83,17 @@ export default function FlashcardsPage() {
         <Link href="/" className="font-handwritten text-2xl font-bold text-ink">
           notes2flashcards
         </Link>
-        <Link href="/notes" className="text-sm font-semibold text-ink hover:text-coral transition-colors">
-          Back to notes
-        </Link>
+        <div className="flex items-center gap-4">
+          <a href={`/api/notes/${noteId}/export/pdf`} className="text-sm font-semibold text-ink hover:text-coral transition-colors">
+            Export PDF
+          </a>
+          <a href={`/api/notes/${noteId}/export/anki`} className="text-sm font-semibold text-ink hover:text-coral transition-colors">
+            Export Anki
+          </a>
+          <Link href="/notes" className="text-sm font-semibold text-ink hover:text-coral transition-colors">
+            Back to notes
+          </Link>
+        </div>
       </nav>
 
       <div className="max-w-xl mx-auto px-8 sm:px-12 py-12">
@@ -93,7 +101,7 @@ export default function FlashcardsPage() {
           Card {currentIndex + 1} of {flashcards.length}
         </p>
 
-        <div className="bg-white border-2 border-ink rounded-2xl shadow-hard-coral p-8 min-h-65 flex flex-col">
+        <div className="bg-white border-2 border-ink rounded-2xl shadow-hard-coral p-8 min-h-[260px] flex flex-col">
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs font-bold uppercase tracking-wide text-sage">
               {card.type === "qa" ? "Question & Answer" : card.type === "fill-blank" ? "Fill in the blank" : "Multiple choice"}
@@ -136,10 +144,7 @@ export default function FlashcardsPage() {
               )}
             </div>
           ) : (
-            <button
-              onClick={() => setRevealed(true)}
-              className="self-start text-sm font-bold bg-ink text-paper px-4 py-2 rounded-lg shadow-hard hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
-            >
+            <button onClick={() => setRevealed(true)} className="self-start text-sm font-bold bg-ink text-paper px-4 py-2 rounded-lg shadow-hard hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
               Reveal answer
             </button>
           )}
