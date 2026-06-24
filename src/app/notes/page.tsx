@@ -12,6 +12,7 @@ interface Note {
   fileType: string;
   extractedText?: string;
   ocrStatus: string;
+  isPublic?: boolean;
   createdAt: string;
 }
 
@@ -65,6 +66,10 @@ export default function NotesPage() {
     } finally {
       setGeneratingId(null);
     }
+  }
+  async function toggleShare(noteId: string) {
+    await fetch(`/api/notes/${noteId}/share`, { method: "POST" });
+    await fetchNotes();
   }
 
   if (status === "loading" || loading) {
@@ -155,6 +160,16 @@ export default function NotesPage() {
                   >
                     Ask AI Tutor
                   </Link>
+                )}
+                {note.ocrStatus === "completed" && (
+                  <button
+                    onClick={() => toggleShare(note._id)}
+                    className={`inline-block ml-2 text-sm font-bold px-4 py-2 rounded-lg shadow-hard transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none ${
+                      note.isPublic ? "bg-sage text-paper" : "bg-white border-2 border-ink text-ink"
+                    }`}
+                  >
+                    {note.isPublic ? "✓ Public" : "Make public"}
+                  </button>
                 )}
               </div>
             ))}

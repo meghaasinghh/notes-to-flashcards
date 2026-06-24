@@ -7,6 +7,9 @@ export interface INote {
   fileType: "image" | "pdf";
   extractedText?: string;
   ocrStatus: "pending" | "processing" | "completed" | "failed";
+  isPublic: boolean;
+  upvotes: number;
+  ownerName?: string;
   createdAt: Date;
 }
 
@@ -41,6 +44,18 @@ const NoteSchema = new Schema<INote>({
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  isPublic: {
+    type: Boolean,
+    default: false,
+  },
+  upvotes: {
+    type: Number,
+    default: 0,
+  },
+  ownerName: {
+    type: String,
+    default: "",
   },
 });
 
