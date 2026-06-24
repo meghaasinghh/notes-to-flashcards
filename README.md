@@ -60,7 +60,7 @@ This is not just a converter — it's a full AI study assistant, built end-to-en
 - [x] Review / study mode UI
 - [x] Analytics dashboard
 - [x] AI tutor chat
-- [ ] Gamification (XP, streaks, goals)
+- [x] Gamification (XP, streaks, goals)
 - [ ] Deck sharing & community features
 - [ ] Export to PDF / Anki
 - [ ] Deployment
