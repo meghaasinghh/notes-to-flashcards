@@ -148,6 +148,14 @@ export default function NotesPage() {
                     {generatingId === note._id ? "Generating cards..." : "Generate Flashcards"}
                   </button>
                 )}
+                {note.ocrStatus === "completed" && (
+                  <Link
+                    href={`/notes/${note._id}/chat`}
+                    className="inline-block ml-2 text-sm font-bold bg-ink text-paper px-4 py-2 rounded-lg shadow-hard hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
+                  >
+                    Ask AI Tutor
+                  </Link>
+                )}
               </div>
             ))}
           </div>

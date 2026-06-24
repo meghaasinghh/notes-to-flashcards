@@ -33,8 +33,20 @@ Notes text:
 ${text}
 """`;
 
-  const result = await model.generateContent(prompt);
-  const responseText = result.response.text();
+  async function generateWithRetry(retries = 2): Promise<string> {
+    try {
+      const result = await model.generateContent(prompt);
+      return result.response.text();
+    } catch (err) {
+      if (retries > 0) {
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+        return generateWithRetry(retries - 1);
+      }
+      throw err;
+    }
+  }
+
+  const responseText = await generateWithRetry();
 
   // Strip any accidental markdown code fences just in case
   const cleaned = responseText.replace(/```json|```/g, "").trim();

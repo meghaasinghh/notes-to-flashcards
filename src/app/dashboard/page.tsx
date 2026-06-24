@@ -51,15 +51,15 @@ export default function DashboardPage() {
         <p className="text-ink/60 mb-10">{session.user?.email}</p>
 
     <div className="grid sm:grid-cols-3 gap-5 max-w-3xl">
-          <Link href="/study" className="bg-coral text-paper border-2 border-ink rounded-2xl shadow-hard p-6 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+          <Link href="/study" className="bg-coral text-paper border-2 border-ink rounded-2xl shadow-hard p-6 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">
             <h3 className="font-bold text-lg mb-1">Start studying</h3>
             <p className="text-sm text-paper/80">Review cards that are due today</p>
           </Link>
-          <Link href="/notes" className="bg-white border-2 border-ink rounded-2xl shadow-hard-line p-6 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+          <Link href="/notes" className="bg-white border-2 border-ink rounded-2xl shadow-hard-line p-6 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">
             <h3 className="font-bold text-lg text-ink mb-1">My notes</h3>
             <p className="text-sm text-ink/60">Upload notes or view your decks</p>
           </Link>
-          <Link href="/analytics" className="bg-white border-2 border-ink rounded-2xl shadow-hard-sage p-6 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+          <Link href="/analytics" className="bg-white border-2 border-ink rounded-2xl shadow-hard-sage p-6 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">
             <h3 className="font-bold text-lg text-ink mb-1">Analytics</h3>
             <p className="text-sm text-ink/60">See your streak and progress</p>
           </Link>
