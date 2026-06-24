@@ -4,6 +4,8 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
+  xp: number;
+  dailyGoal: number;
   createdAt: Date;
 }
 
@@ -27,6 +29,14 @@ const UserSchema = new Schema<IUser>({
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  xp: {
+    type: Number,
+    default: 0,
+  },
+  dailyGoal: {
+    type: Number,
+    default: 10,
   },
 });
 

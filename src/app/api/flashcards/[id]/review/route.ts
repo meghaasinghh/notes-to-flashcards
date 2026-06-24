@@ -4,6 +4,7 @@ import { connectToDatabase } from "@/lib/mongoose";
 import Flashcard from "@/models/Flashcard";
 import { calculateSM2 } from "@/lib/sm2";
 import ReviewLog from "@/models/ReviewLog";
+import User from "@/models/User";
 
 export async function POST(
   req: Request,
@@ -59,6 +60,12 @@ export async function POST(
       flashcardId: id,
       quality,
     });
+    // Award XP: more for higher quality ratings
+    const xpEarned = quality >= 4 ? 15 : quality === 3 ? 10 : 5;
+    await User.updateOne(
+      { email: session.user.email },
+      { $inc: { xp: xpEarned } }
+    );
 
     return NextResponse.json({
       message: "Review recorded",
