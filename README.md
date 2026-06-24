@@ -59,7 +59,7 @@ This is not just a converter — it's a full AI study assistant, built end-to-en
 - [x] SM-2 spaced repetition engine
 - [x] Review / study mode UI
 - [x] Analytics dashboard
-- [ ] AI tutor chat
+- [x] AI tutor chat
 - [ ] Gamification (XP, streaks, goals)
 - [ ] Deck sharing & community features
 - [ ] Export to PDF / Anki
